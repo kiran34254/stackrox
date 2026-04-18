@@ -1,0 +1,111 @@
+apiVersion: platform.stackrox.io/v1alpha1
+kind: SecuredCluster
+metadata:
+  creationTimestamp: '2024-11-06T11:05:49Z'
+  finalizers:
+    - uninstall-helm-release
+  generation: 1
+  managedFields:
+    - apiVersion: platform.stackrox.io/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          .: {}
+          'f:admissionControl':
+            .: {}
+            'f:bypass': {}
+            'f:contactImageScanners': {}
+            'f:listenOnCreates': {}
+            'f:listenOnEvents': {}
+            'f:listenOnUpdates': {}
+            'f:replicas': {}
+            'f:timeoutSeconds': {}
+          'f:clusterName': {}
+          'f:perNode':
+            .: {}
+            'f:collector':
+              .: {}
+              'f:collection': {}
+              'f:forceCollection': {}
+              'f:imageFlavor': {}
+            'f:taintToleration': {}
+          'f:scannerV4':
+            .: {}
+            'f:scannerComponent': {}
+      manager: Mozilla
+      operation: Update
+      time: '2024-11-06T11:05:49Z'
+    - apiVersion: platform.stackrox.io/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:finalizers':
+            .: {}
+            'v:"uninstall-helm-release"': {}
+      manager: rhacs-operator
+      operation: Update
+      time: '2024-11-06T11:05:49Z'
+    - apiVersion: platform.stackrox.io/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          .: {}
+          'f:clusterName': {}
+          'f:conditions': {}
+          'f:deployedRelease': {}
+          'f:productVersion': {}
+      manager: rhacs-operator
+      operation: Update
+      subresource: status
+      time: '2024-11-08T19:26:50Z'
+  name: stackrox-secured-cluster-services
+  namespace: stackrox
+  resourceVersion: '2545906'
+  uid: 97863417-db6e-4c76-bb51-2e8127fdbe06
+spec:
+  admissionControl:
+    bypass: BreakGlassAnnotation
+    contactImageScanners: DoNotScanInline
+    listenOnCreates: false
+    listenOnEvents: false
+    listenOnUpdates: false
+    replicas: 3
+    timeoutSeconds: 10
+  clusterName: ocpcmpdr
+  perNode:
+    collector:
+      collection: EBPF
+      forceCollection: false
+      imageFlavor: Regular
+    taintToleration: TolerateTaints
+  scannerV4:
+    scannerComponent: Default
+status:
+  clusterName: ocpcmpdr
+  conditions:
+    - lastTransitionTime: '2024-11-06T11:06:21Z'
+      message: |
+        StackRox Secured Cluster Services 4.5.2 has been installed.
+
+
+
+        Thank you for using StackRox!
+      reason: UpgradeSuccessful
+      status: 'True'
+      type: Deployed
+    - lastTransitionTime: '2024-11-06T11:06:21Z'
+      status: 'True'
+      type: Initialized
+    - lastTransitionTime: '2024-11-06T11:06:21Z'
+      status: 'False'
+      type: Irreconcilable
+    - lastTransitionTime: '2024-11-06T11:06:21Z'
+      message: No proxy configuration is desired
+      reason: NoProxyConfig
+      status: 'False'
+      type: ProxyConfigFailed
+    - lastTransitionTime: '2024-11-06T11:06:21Z'
+      status: 'False'
+      type: ReleaseFailed
+  deployedRelease: {}
+  productVersion: 4.5.2
