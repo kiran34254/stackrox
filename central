@@ -1,0 +1,223 @@
+apiVersion: platform.stackrox.io/v1alpha1
+kind: Central
+metadata:
+  creationTimestamp: '2024-11-06T09:53:02Z'
+  finalizers:
+    - uninstall-helm-release
+  generation: 1
+  managedFields:
+    - apiVersion: platform.stackrox.io/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          .: {}
+          'f:central':
+            .: {}
+            'f:db':
+              .: {}
+              'f:isEnabled': {}
+              'f:persistence':
+                .: {}
+                'f:persistentVolumeClaim':
+                  .: {}
+                  'f:claimName': {}
+            'f:exposure':
+              .: {}
+              'f:loadBalancer':
+                .: {}
+                'f:enabled': {}
+                'f:port': {}
+              'f:nodePort':
+                .: {}
+                'f:enabled': {}
+              'f:route':
+                .: {}
+                'f:enabled': {}
+            'f:notifierSecretsEncryption':
+              .: {}
+              'f:enabled': {}
+            'f:persistence':
+              .: {}
+              'f:persistentVolumeClaim':
+                .: {}
+                'f:claimName': {}
+            'f:telemetry':
+              .: {}
+              'f:enabled': {}
+          'f:egress':
+            .: {}
+            'f:connectivityPolicy': {}
+          'f:monitoring':
+            .: {}
+            'f:openshift':
+              .: {}
+              'f:enabled': {}
+          'f:network':
+            .: {}
+            'f:policies': {}
+          'f:scanner':
+            .: {}
+            'f:analyzer':
+              .: {}
+              'f:scaling':
+                .: {}
+                'f:autoScaling': {}
+                'f:maxReplicas': {}
+                'f:minReplicas': {}
+                'f:replicas': {}
+          'f:scannerV4':
+            .: {}
+            'f:db':
+              .: {}
+              'f:persistence':
+                .: {}
+                'f:persistentVolumeClaim':
+                  .: {}
+                  'f:claimName': {}
+            'f:indexer':
+              .: {}
+              'f:scaling':
+                .: {}
+                'f:autoScaling': {}
+                'f:maxReplicas': {}
+                'f:minReplicas': {}
+                'f:replicas': {}
+            'f:matcher':
+              .: {}
+              'f:scaling':
+                .: {}
+                'f:autoScaling': {}
+                'f:maxReplicas': {}
+                'f:minReplicas': {}
+                'f:replicas': {}
+            'f:scannerComponent': {}
+      manager: Mozilla
+      operation: Update
+      time: '2024-11-06T09:53:02Z'
+    - apiVersion: platform.stackrox.io/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:finalizers':
+            .: {}
+            'v:"uninstall-helm-release"': {}
+      manager: rhacs-operator
+      operation: Update
+      time: '2024-11-06T09:53:02Z'
+    - apiVersion: platform.stackrox.io/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          .: {}
+          'f:central':
+            .: {}
+            'f:adminPassword':
+              .: {}
+              'f:adminPasswordSecretReference': {}
+              'f:info': {}
+          'f:conditions': {}
+          'f:deployedRelease': {}
+          'f:productVersion': {}
+      manager: rhacs-operator
+      operation: Update
+      subresource: status
+      time: '2024-12-30T13:27:22Z'
+  name: stackrox-central-services
+  namespace: stackrox
+  resourceVersion: '45552734'
+  uid: 61476779-2936-4cfa-a4f2-e04cf436ccf3
+spec:
+  central:
+    db:
+      isEnabled: Default
+      persistence:
+        persistentVolumeClaim:
+          claimName: central-db
+    exposure:
+      loadBalancer:
+        enabled: false
+        port: 443
+      nodePort:
+        enabled: false
+      route:
+        enabled: true
+    notifierSecretsEncryption:
+      enabled: false
+    persistence:
+      persistentVolumeClaim:
+        claimName: stackrox-db
+    telemetry:
+      enabled: true
+  egress:
+    connectivityPolicy: Offline
+  monitoring:
+    openshift:
+      enabled: true
+  network:
+    policies: Enabled
+  scanner:
+    analyzer:
+      scaling:
+        autoScaling: Enabled
+        maxReplicas: 5
+        minReplicas: 2
+        replicas: 3
+  scannerV4:
+    db:
+      persistence:
+        persistentVolumeClaim:
+          claimName: scanner-v4-db
+    indexer:
+      scaling:
+        autoScaling: Enabled
+        maxReplicas: 5
+        minReplicas: 2
+        replicas: 3
+    matcher:
+      scaling:
+        autoScaling: Enabled
+        maxReplicas: 5
+        minReplicas: 2
+        replicas: 3
+    scannerComponent: Default
+status:
+  central:
+    adminPassword:
+      adminPasswordSecretReference: central-htpasswd
+      info: |-
+        A password for the 'admin' user has been automatically generated and stored in the "password" entry of the central-htpasswd secret.
+        To view the password see the secret reference field or run
+          oc -n stackrox get secret central-htpasswd -o go-template='{{index .data "password" | base64decode}}'
+  conditions:
+    - lastTransitionTime: '2024-12-30T13:27:22Z'
+      message: |
+        StackRox Central Services has been installed.
+
+
+
+
+        StackRox Kubernetes Security Platform collects and transmits anonymous usage and
+        system configuration information. If you want to OPT OUT from this, use
+        --set central.telemetry.enabled=false.
+
+
+        Thank you for using StackRox!
+      reason: InstallSuccessful
+      status: 'True'
+      type: Deployed
+    - lastTransitionTime: '2024-11-06T09:53:29Z'
+      status: 'True'
+      type: Initialized
+    - lastTransitionTime: '2024-12-30T13:27:22Z'
+      status: 'False'
+      type: Irreconcilable
+    - lastTransitionTime: '2024-11-06T09:53:29Z'
+      message: No proxy configuration is desired
+      reason: NoProxyConfig
+      status: 'False'
+      type: ProxyConfigFailed
+    - lastTransitionTime: '2024-12-30T13:27:22Z'
+      status: 'False'
+      type: ReleaseFailed
+  deployedRelease: {}
+  productVersion: 4.5.2
